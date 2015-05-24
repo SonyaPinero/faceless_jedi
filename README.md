@@ -1,1 +1,1 @@
-Playing around with Reddit's API in JavaScript. 
+Playing around with Reddit's API and Express. 
