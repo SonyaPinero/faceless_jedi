@@ -10,3 +10,6 @@ server.get('/', function(req, res){
 });
 
 server.listen(3000);
+
+var jedi = require('./node/reddit.js');
+jedi.serverSetup(server);
