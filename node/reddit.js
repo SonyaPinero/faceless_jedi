@@ -5,7 +5,6 @@ var imageArray = [];
 function getJedi(){
 		return new Promise(function(resolve, reject){
 			Reddit.subreddit("ImaginaryJedi").exec(function(data){
-			console.log('my data', data)
 			var array = data.data.children
 			array.forEach(function(url){
 				if ((url.data.url).indexOf('jpg' || 'jpeg') > -1 ){
@@ -20,7 +19,6 @@ function getJedi(){
 function getWesteros(array){
 		return new Promise(function(resolve, reject){
 			Reddit.subreddit("ImaginaryWesteros").exec(function(data){
-  		console.log('my data', data)
 			var array = data.data.children
 			array.forEach(function(url){
 				if ((url.data.url).indexOf('jpg' || 'jpeg') > -1 ){
@@ -38,6 +36,7 @@ function getImages(req, res){
 			return getWesteros()
 		})
 		.then(function(){
+			console.log(imageArray)
 			return res.json(imageArray)
 		})
 }

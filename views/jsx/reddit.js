@@ -24,7 +24,7 @@ var App = React.createClass({
   render(){
     return (
       <div>
-        <h1>Faceless Jedi</h1>
+        <h1 style={{textAlign: 'center' }}>Faceless Jedi</h1>
       </div>
     )
   }
