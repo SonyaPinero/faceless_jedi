@@ -1,42 +1,46 @@
 var r = require('nraw');
 var Reddit = new r("User");
-var imageArray = [];
 
 function getJedi(){
 		return new Promise(function(resolve, reject){
+			var images = [];
 			Reddit.subreddit("ImaginaryJedi").exec(function(data){
 			var array = data.data.children
 			array.forEach(function(url){
 				if ((url.data.url).indexOf('jpg' || 'jpeg') > -1 ){
-					imageArray.push(url.data.url)
+					images.push(url.data.url)
 				}
 			})
-			resolve(imageArray)
+			resolve(images)
 		})
 	})
 }
 
 function getWesteros(array){
 		return new Promise(function(resolve, reject){
+			var images = [];
 			Reddit.subreddit("ImaginaryWesteros").exec(function(data){
 			var array = data.data.children
 			array.forEach(function(url){
 				if ((url.data.url).indexOf('jpg' || 'jpeg') > -1 ){
-					imageArray.push(url.data.url)
+					images.push(url.data.url)
 				}
 			})
-  		resolve(imageArray)
+  		resolve(images);
   	})
 	})
 }
 
 function getImages(req, res){
+	var imageArray = [];
+	
 	getJedi()
-		.then(function(){
+		.then(function(jediImages){
+			imageArray = imageArray.concat(jediImages);
 			return getWesteros()
 		})
-		.then(function(){
-			console.log(imageArray)
+		.then(function(westerosImages){
+			imageArray = imageArray.concat(westerosImages)
 			return res.json(imageArray)
 		})
 }
