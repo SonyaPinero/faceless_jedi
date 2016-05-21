@@ -1,9 +1,3 @@
-var RedditApi = React.createClass({
-
-  
-})
-
-
 var App = React.createClass({
   getInitialState: function() {
     return {
@@ -31,7 +25,6 @@ var App = React.createClass({
     return (
       <div>
         <h1>Faceless Jedi</h1>
-        <RedditApi />
       </div>
     )
   }
